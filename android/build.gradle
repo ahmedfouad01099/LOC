@@ -2,11 +2,21 @@
 
 buildscript {
     ext {
+        // buildToolsVersion = "30.0.2"
+        // minSdkVersion = 21
+        // compileSdkVersion = 31
+        // targetSdkVersion = 30
+        // ndkVersion = "21.4.7075529"
+
         buildToolsVersion = "30.0.2"
         minSdkVersion = 21
         compileSdkVersion = 31
         targetSdkVersion = 30
         ndkVersion = "21.4.7075529"
+        playServicesVersion = "18.0.1"
+        androidMapsUtilsVersion = "2.3.0"
+        supportLibVersion   = "30.0.2"
+        androidXCore = "1.7.0"
     }
     repositories {
         google()
