@@ -5,10 +5,9 @@ import TouchableCmp from '../../constants/TouchableCmp';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Entypo from 'react-native-vector-icons/Entypo';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-// import OverlayView from './OverlayView/OverlayView';
-// import {onLogout} from '../../store/Login/Login';
+import OverlayView from './OverlayView/OverlayView';
+import {onLogout} from '../../store/Login/Login';
 import {useDispatch} from 'react-redux';
-// import Profile from '../Profile/Profile';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
   createIdentifierTable,
@@ -188,8 +187,7 @@ function Home(props) {
             <View style={{width: '100%', padding: 10}}>
               <TouchableCmp
                 style={styles.logoutBtn}
-                // onPress={() => dispatch(onLogout(props))}
-              >
+                onPress={() => dispatch(onLogout(props))}>
                 <Text style={styles.logoutTxt}>Log out</Text>
               </TouchableCmp>
             </View>
@@ -209,7 +207,7 @@ function Home(props) {
 
       {/* Overlay View */}
 
-      {/* {currentTab === 'Home' ? (
+      {currentTab === 'Home' ? (
         <OverlayView
           showMenu={showMenu}
           scaleValue={scaleValue}
@@ -255,7 +253,7 @@ function Home(props) {
           currentTab={currentTab}
           props={props}
         />
-      ) : null} */}
+      ) : null}
     </View>
   );
 }

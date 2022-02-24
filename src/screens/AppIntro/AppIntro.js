@@ -4,7 +4,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import Login from '../Login/Login';
-import Navigation from '../../Navigation/Navigation';
 import Home from '../Home/Home';
 
 const Loading = () => {

@@ -2,15 +2,12 @@ import React from 'react';
 import {Image, StyleSheet, Text, TextInput, View} from 'react-native';
 import MainButton from '../../components/Button/MainButton';
 import InputText from '../../components/Inputs/InputText';
-// import AntDesign from 'react-native-vector-icons/AntDesign';
-import {GoogleSvg} from '../../constants/Icons';
 import {useDispatch, useSelector} from 'react-redux';
-// import {onChangeLoginInput, onLoginHandler} from '../../store/Login/Login';
-import Spinner from '../../components/Spinner/Spinner';
+import {onChangeLoginInput, onLoginHandler} from '../../store/Login/Login';
 
 function Login(props) {
   const dispatch = useDispatch();
-  // const {loginForm, loading} = useSelector(state => state.login);
+  const {loginForm, loading} = useSelector(state => state.login);
   return (
     <View style={styles.container}>
       <Image source={require('../../../assets/images/1.png')} />
@@ -27,8 +24,8 @@ function Login(props) {
         imageSource={require('../../../assets/images/user.png')}
         name={'userName'}
         borderColor={'#48B8AC'}
-        // onChange={e => dispatch(onChangeLoginInput(e, 'email'))}
-        // value={loginForm.email.value}
+        onChange={e => dispatch(onChangeLoginInput(e, 'email'))}
+        value={loginForm.email.value}
       />
       <InputText
         styleProp={styles.TxtInput}
@@ -37,29 +34,26 @@ function Login(props) {
         secureTextEntry={true}
         name={'pass'}
         borderColor={'#48B8AC'}
-        // onChange={e => dispatch(onChangeLoginInput(e, 'password'))}
-        // value={loginForm.password.value}
+        onChange={e => dispatch(onChangeLoginInput(e, 'password'))}
+        value={loginForm.password.value}
       />
 
       <MainButton
         title={'Log in'}
-        // loading={loading}
+        loading={loading}
         btnBackgroundColor={'#222D58'}
         txtColor={'#fff'}
         props={props}
         onPress={() => {
-          props.navigation.navigate('home');
+          dispatch(
+            onLoginHandler(
+              loginForm.email.value,
+              loginForm.password.value,
+              props,
+            ),
+          );
+          // props.navigation.navigate('home');
         }}
-        // onPress={() => {
-        //   dispatch(
-        //     onLoginHandler(
-        //       loginForm.email.value,
-        //       loginForm.password.value,
-        //       props,
-        //     ),
-        //   );
-        //   // props.navigation.navigate('home');
-        // }}
       />
       {/* <Text style={{color: '#48B8AC'}}>or connect using</Text> */}
       {/* <MainButton

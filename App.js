@@ -19,18 +19,18 @@ import {applyMiddleware, combineReducers, createStore} from 'redux';
 import thunk from 'redux-thunk';
 import {Provider} from 'react-redux';
 
-// import LoginReducer from './src/store/Login/Login';
-// import NfcInfoReducer from './src/store/NfcInfo/NfcInfo';
-// import LocsReducers from './src/store/Locs/LocsReducer';
-// import AddUsersReducer from './src/store/AddUsers/AddUsers';
-// import ProjectsReducer from './src/store/Projects/ProjectsReducer';
-// import GlobalIdenetifierReducer from './src/store/Globalidenetifiers/Globalidenetifiers';
-// import LocationReducer from './src/store/Locations/LocationsReducers';
-// import MobileModeReducer from './src/store/MobileMode/MobileModeReducer';
-// import LocationOfflineModeReducer from './src/store/Locations/LocationsOfflineModeReducer';
-// import GlobalIdenetifierOfflineReducer from './src/store/Globalidenetifiers/GlobalIdenitfiersOfflineMode';
-// import ProjectsOfflineModeReducer from './src/store/Projects/ProjectsOfflineModeReducer';
-// import LocsOfflineModeReducers from './src/store/Locs/LOCsOfflineReducer';
+import LoginReducer from './src/store/Login/Login';
+import NfcInfoReducer from './src/store/NfcInfo/NfcInfo';
+import LocsReducers from './src/store/Locs/LocsReducer';
+import AddUsersReducer from './src/store/AddUsers/AddUsers';
+import ProjectsReducer from './src/store/Projects/ProjectsReducer';
+import GlobalIdenetifierReducer from './src/store/Globalidenetifiers/Globalidenetifiers';
+import LocationReducer from './src/store/Locations/LocationsReducers';
+import MobileModeReducer from './src/store/MobileMode/MobileModeReducer';
+import LocationOfflineModeReducer from './src/store/Locations/LocationsOfflineModeReducer';
+import GlobalIdenetifierOfflineReducer from './src/store/Globalidenetifiers/GlobalIdenitfiersOfflineMode';
+import ProjectsOfflineModeReducer from './src/store/Projects/ProjectsOfflineModeReducer';
+import LocsOfflineModeReducers from './src/store/Locs/LOCsOfflineReducer';
 enableScreens();
 
 NetInfo.fetch().then(state => {
@@ -38,22 +38,21 @@ NetInfo.fetch().then(state => {
   console.log('Is connected?', state.isConnected);
 });
 
-//  const rootReducer = combineReducers({
-//    login: LoginReducer,
-//    nfcInfo: NfcInfoReducer,
-//    newUser: AddUsersReducer,
-//    globalIdentifier: GlobalIdenetifierReducer,
-//    globalIdentifierOffline: GlobalIdenetifierOfflineReducer,
-//    projects: ProjectsReducer,
-//    projectsOffline: ProjectsOfflineModeReducer,
-//    locations: LocationReducer,
-//    loactionsOfflineMode: LocationOfflineModeReducer,
-//    locs: LocsReducers,
-//    locsOffline: LocsOfflineModeReducers,
-//    mobileMode: MobileModeReducer,
-//  });
+const rootReducer = combineReducers({
+  login: LoginReducer,
+  nfcInfo: NfcInfoReducer,
+  newUser: AddUsersReducer,
+  globalIdentifier: GlobalIdenetifierReducer,
+  globalIdentifierOffline: GlobalIdenetifierOfflineReducer,
+  projects: ProjectsReducer,
+  projectsOffline: ProjectsOfflineModeReducer,
+  locations: LocationReducer,
+  loactionsOfflineMode: LocationOfflineModeReducer,
+  locs: LocsReducers,
+  locsOffline: LocsOfflineModeReducers,
+  mobileMode: MobileModeReducer,
+});
 
-const rootReducer = combineReducers({});
 const store = createStore(
   rootReducer,
   composeWithDevTools(applyMiddleware(thunk)),
