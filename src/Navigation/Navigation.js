@@ -3,6 +3,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import AppIntro from '../screens/AppIntro/AppIntro';
 import Login from '../screens/Login/Login';
+import Home from '../screens/Home/Home';
 // import Home from '../screens/Home/Home';
 // import NFCEnable from '../screens/NFCEnable/NFCEnable';
 // import Profile from '../screens/Profile/Profile';
@@ -48,6 +49,8 @@ function Navigation() {
         screenOptions={{headerShown: false}}>
         <Stack.Screen name="app_intro" component={AppIntro} />
         <Stack.Screen name="login" component={Login} />
+        <Stack.Screen name="home" component={Home} />
+
         {/* {false ? (
           <React.Fragment>
             <Stack.Screen name="app_intro" component={AppIntro} />

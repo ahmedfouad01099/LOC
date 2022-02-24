@@ -47,6 +47,9 @@ function Login(props) {
         btnBackgroundColor={'#222D58'}
         txtColor={'#fff'}
         props={props}
+        onPress={() => {
+          props.navigation.navigate('home');
+        }}
         // onPress={() => {
         //   dispatch(
         //     onLoginHandler(

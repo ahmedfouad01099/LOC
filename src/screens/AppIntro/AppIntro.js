@@ -5,6 +5,7 @@ import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import Login from '../Login/Login';
 import Navigation from '../../Navigation/Navigation';
+import Home from '../Home/Home';
 
 const Loading = () => {
   return (
@@ -36,7 +37,7 @@ function AppIntro(props) {
   }, []);
 
   // const token = useSelector(state => state.login.token);
-  
+
   return (
     <View style={styles.container}>
       {loading ? (
@@ -44,7 +45,7 @@ function AppIntro(props) {
       ) : viewOnboarding ? (
         true ? (
           <View style={{width: '100%', flex: 1}}>
-            <Navigation {...props} />
+            <Home />
           </View>
         ) : (
           <Login {...props} />
