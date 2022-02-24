@@ -5,7 +5,7 @@ import AppIntro from '../screens/AppIntro/AppIntro';
 import Login from '../screens/Login/Login';
 import Home from '../screens/Home/Home';
 // import Home from '../screens/Home/Home';
-// import NFCEnable from '../screens/NFCEnable/NFCEnable';
+import NFCEnable from '../screens/NFCEnable/NFCEnable';
 // import Profile from '../screens/Profile/Profile';
 // import SingleLoc from '../screens/SingleLoc/SingleLoc';
 // import SingleLocEdit from '../screens/SingleLocEdit/SingleLocEdit';
@@ -50,6 +50,7 @@ function Navigation() {
         <Stack.Screen name="app_intro" component={AppIntro} />
         <Stack.Screen name="login" component={Login} />
         <Stack.Screen name="home" component={Home} />
+        <Stack.Screen name="nfc_enable" component={NFCEnable} />
 
         {/* {false ? (
           <React.Fragment>
