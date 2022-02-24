@@ -6,107 +6,81 @@
  * @flow strict-local
  */
 
-import React from 'react';
-import type {Node} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import React, {useEffect} from 'react';
+import {LogBox, SafeAreaView, StatusBar, useColorScheme} from 'react-native';
+import NetInfo from '@react-native-community/netinfo';
 
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+import Navigation from './src/Navigation/Navigation';
+// import RNBootSplash from 'react-native-bootsplash';
 
-const Section = ({children, title}): Node => {
+import {enableScreens} from 'react-native-screens';
+import {composeWithDevTools} from 'redux-devtools-extension';
+import {applyMiddleware, combineReducers, createStore} from 'redux';
+import thunk from 'redux-thunk';
+import {Provider} from 'react-redux';
+
+// import LoginReducer from './src/store/Login/Login';
+// import NfcInfoReducer from './src/store/NfcInfo/NfcInfo';
+// import LocsReducers from './src/store/Locs/LocsReducer';
+// import AddUsersReducer from './src/store/AddUsers/AddUsers';
+// import ProjectsReducer from './src/store/Projects/ProjectsReducer';
+// import GlobalIdenetifierReducer from './src/store/Globalidenetifiers/Globalidenetifiers';
+// import LocationReducer from './src/store/Locations/LocationsReducers';
+// import MobileModeReducer from './src/store/MobileMode/MobileModeReducer';
+// import LocationOfflineModeReducer from './src/store/Locations/LocationsOfflineModeReducer';
+// import GlobalIdenetifierOfflineReducer from './src/store/Globalidenetifiers/GlobalIdenitfiersOfflineMode';
+// import ProjectsOfflineModeReducer from './src/store/Projects/ProjectsOfflineModeReducer';
+// import LocsOfflineModeReducers from './src/store/Locs/LOCsOfflineReducer';
+enableScreens();
+
+NetInfo.fetch().then(state => {
+  console.log('Connection type', state.type);
+  console.log('Is connected?', state.isConnected);
+});
+
+//  const rootReducer = combineReducers({
+//    login: LoginReducer,
+//    nfcInfo: NfcInfoReducer,
+//    newUser: AddUsersReducer,
+//    globalIdentifier: GlobalIdenetifierReducer,
+//    globalIdentifierOffline: GlobalIdenetifierOfflineReducer,
+//    projects: ProjectsReducer,
+//    projectsOffline: ProjectsOfflineModeReducer,
+//    locations: LocationReducer,
+//    loactionsOfflineMode: LocationOfflineModeReducer,
+//    locs: LocsReducers,
+//    locsOffline: LocsOfflineModeReducers,
+//    mobileMode: MobileModeReducer,
+//  });
+
+const rootReducer = combineReducers({});
+const store = createStore(
+  rootReducer,
+  composeWithDevTools(applyMiddleware(thunk)),
+);
+
+const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
 
-const App: () => Node = () => {
-  const isDarkMode = useColorScheme() === 'dark';
+  // useEffect(() => {
+  //   LogBox.ignoreAllLogs();
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  //   setTimeout(() => {
+  //     RNBootSplash.hide();
+  //   }, 1000);
+  // }, []);
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={backgroundStyle}>
-        <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.js</Text> to change this
-            screen and then come back to see your edits.
-          </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
-        </View>
-      </ScrollView>
+    <SafeAreaView style={{flex: 1}}>
+      <StatusBar
+        barStyle={isDarkMode ? 'light-content' : 'dark-content'}
+        backgroundColor={'#fff'}
+      />
+      <Provider store={store}>
+        <Navigation />
+      </Provider>
     </SafeAreaView>
   );
 };
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;
